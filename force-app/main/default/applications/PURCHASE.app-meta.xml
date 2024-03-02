@@ -12,6 +12,7 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>PURCHASE!</label>
     <navType>Standard</navType>
+    <tabs>Create_Purchase_Orders</tabs>
     <tabs>Purchase_Order__c</tabs>
     <tabs>standard-Account</tabs>
     <uiType>Lightning</uiType>
