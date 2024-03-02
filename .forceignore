@@ -13,3 +13,6 @@ package.xml
 
 # Profiles
 **.profile-meta.xml
+
+# App Menus
+**.appMenu-meta.xml
