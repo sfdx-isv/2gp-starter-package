@@ -1,28 +1,33 @@
 <apex:page controller="CreatePOController">
-    <apex:form>
-        <apex:inputText value="{!searchString}" onkeypress="return executeOnEnter(event)" />
-        <apex:commandButton value="Search" action="{!search}" rerender="approvedVendorTable" />
-        <apex:actionFunction name="executeAction" action="{!search}" rerender="approvedVendorTable" />
-    </apex:form>
+    <style>
+        .left-align label, .left-align input, .left-align select {
+            float: left;
+        }
+    </style>
     <apex:form>
         <apex:pageBlock id="approvedVendorTable" title="New Purchase Order">
+            <apex:pageMessages />
+            <apex:pageBlockSection columns="1" title="Select Vendor (Press ENTER to Search)" collapsible="false">
+                <apex:inputText value="{!searchString}" onkeypress="return executeOnEnter(event)" label="Find Approved Vendor by Name" />
+                <apex:actionFunction name="executeAction" action="{!search}" rerender="approvedVendorTable" />
+            </apex:pageBlockSection>
             <apex:pageBlockTable value="{!approvedVendors}" var="approvedVendor" rendered="{!NOT(ISNULL(approvedVendors))}">
                 <apex:column>
                     <apex:facet name="header">Select</apex:facet>
-                    <apex:selectRadio value="{!approvedVendor.Id}">
-                        <apex:selectOptions value="{!selectedVendorIds}" />
+                    <apex:selectRadio value="{!selectedVendorId}">
+                        <apex:selectOption itemValue="{!approvedVendor.acc.Id}" itemLabel="" />
                     </apex:selectRadio>
                 </apex:column>
                 <apex:column>
                     <apex:facet name="header">Vendor Name</apex:facet>
-                    <apex:outputText value="{!approvedVendor.Name}" />
+                    <apex:outputText value="{!approvedVendor.acc.Name}" />
                 </apex:column>
             </apex:pageBlockTable>
-            <apex:pageBlockSection>
-                <apex:inputText value="{!description}" label="Description of Purchase" />
+            <apex:pageBlockSection columns="1" title="Enter Purchase Details" collapsible="false">
+                <apex:inputTextarea value="{!description}" label="Description of Purchase" />
                 <apex:inputText value="{!totalCost}" label="Total Cost of Purchase" />
             </apex:pageBlockSection>
-            <apex:commandButton value="Save" action="{!save}" />
+            <apex:commandButton value="Create Purchase Order" action="{!save}" />
         </apex:pageBlock>
     </apex:form>
     <script>
