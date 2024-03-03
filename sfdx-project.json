@@ -6,7 +6,7 @@
     }
   ],
   "name": "2GP Starter Package",
-  "namespace": "my_ns_prefix",
+  "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "59.0"
 }
