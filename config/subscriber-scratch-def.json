@@ -1,0 +1,25 @@
+{
+  "orgName": "Subscriber Test Org",
+  "edition": "Enterprise",
+  "features": ["EnableSetPasswordInApi"],
+  "hasSampleData": true,
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "securitySettings": {
+      "sessionSettings": {
+        "sessionTimeout": "TwentyFourHours"
+      }
+    },
+    "userManagementSettings": {
+      "enableEnhancedPermsetMgmt": true,
+      "enableEnhancedProfileMgmt": true,
+      "enableNewProfileUI": true,
+      "permsetsInFieldCreation": true
+    } 
+  }
+}
