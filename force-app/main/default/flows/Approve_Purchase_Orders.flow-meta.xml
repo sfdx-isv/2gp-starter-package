@@ -102,11 +102,11 @@
         <object>Purchase_Order__c</object>
         <queriedFields>Id</queriedFields>
         <queriedFields>Name</queriedFields>
-        <queriedFields>Description__c</queriedFields>
         <queriedFields>Total_Cost__c</queriedFields>
         <queriedFields>Approved__c</queriedFields>
         <queriedFields>Approved_By__c</queriedFields>
         <queriedFields>Vendor_Name__c</queriedFields>
+        <queriedFields>Description__c</queriedFields>
         <sortField>Name</sortField>
         <sortOrder>Desc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
