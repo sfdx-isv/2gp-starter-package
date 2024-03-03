@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>A page for the approver to review and approve created Purchase Orders.</description>
+    <flexiPage>Approve_Purchase_Orders</flexiPage>
+    <label>Approve Purchase Orders</label>
+    <motif>Custom29: PDA</motif>
+</CustomTab>

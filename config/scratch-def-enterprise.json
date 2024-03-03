@@ -1,6 +1,6 @@
 {
-  "orgName": "2GP Starter Package",
-  "edition": "Developer",
+  "orgName": "Subscriber Test Org",
+  "edition": "Enterprise",
   "hasSampleData": true,
   "features": ["EnableSetPasswordInApi"],
   "settings": {
