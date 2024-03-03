@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vendor_Name__c</fullName>
+    <description>The Account Name of the Vendor used for the Purchase Order. Primarily used to render the vendor&apos;s name in Flows related to the Purchase_Order__c object.</description>
+    <externalId>false</externalId>
+    <formula>Vendor__r.Name</formula>
+    <label>Vendor Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
