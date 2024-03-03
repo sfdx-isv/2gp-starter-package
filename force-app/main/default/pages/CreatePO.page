@@ -1,9 +1,4 @@
 <apex:page controller="CreatePOController">
-    <style>
-        .left-align label, .left-align input, .left-align select {
-            float: left;
-        }
-    </style>
     <apex:form>
         <apex:pageBlock id="approvedVendorTable" title="Enter the Details for Your New Purchase Order(s):">
             <apex:pageMessages />
