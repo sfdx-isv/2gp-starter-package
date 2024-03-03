@@ -129,6 +129,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <tabSettings>
+        <tab>Create_Purchase_Orders</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Purchase_Order__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
