@@ -337,7 +337,7 @@
             <targetReference>UnapprovedPurchaseOrders</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <description>Collection containing approved Purchase Orders.</description>
         <name>ApprovedPurchaseOrders</name>
