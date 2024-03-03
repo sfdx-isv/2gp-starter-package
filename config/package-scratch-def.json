@@ -1,7 +1,8 @@
 {
-  "orgName": "2GP Starter Package",
+  "orgName": "PURCHASE! Package Development Org",
   "edition": "Developer",
   "features": ["EnableSetPasswordInApi"],
+  "hasSampleData": true,
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
