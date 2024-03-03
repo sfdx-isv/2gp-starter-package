@@ -1,27 +1,27 @@
 <apex:page controller="CreatePOController">
     <apex:form>
-        <apex:pageBlock id="approvedVendorTable" title="Enter the Details for Your New Purchase Order(s):">
+        <apex:pageBlock id="vendorTable" title="Enter the Details for Your New Purchase Order(s):">
             <apex:pageMessages />
             <apex:pageBlockSection columns="1" title="Select Vendor(s) (Press ENTER to Search)" collapsible="false">
-                <apex:inputText value="{!searchString}" onkeypress="return executeOnEnter(event)" label="Find Approved Vendors by Name" />
-                <apex:actionFunction name="executeAction" action="{!search}" rerender="approvedVendorTable" />
+                <apex:inputText value="{!searchString}" onkeypress="return executeOnEnter(event)" label="Find Vendors by Name" />
+                <apex:actionFunction name="executeAction" action="{!search}" rerender="vendorTable" />
             </apex:pageBlockSection>
-            <apex:pageBlockTable value="{!approvedVendors}" var="approvedVendor" rendered="{!NOT(ISNULL(approvedVendors))}">
+            <apex:pageBlockTable value="{!vendors}" var="vendor" rendered="{!NOT(ISNULL(vendors))}">
                 <apex:column>
                     <apex:facet name="header">Select</apex:facet>
-                    <apex:inputCheckbox value="{!approvedVendor.isSelected}" label="Who Me?" />
+                    <apex:inputCheckbox value="{!vendor.isSelected}" label="Who Me?" />
                 </apex:column>
                 <apex:column>
                     <apex:facet name="header">Vendor Name</apex:facet>
-                    <apex:outputText value="{!approvedVendor.acc.Name}" />
+                    <apex:outputText value="{!vendor.acc.Name}" />
                 </apex:column>
                 <apex:column>
                     <apex:facet name="header">Vendor Phone</apex:facet>
-                    <apex:outputText value="{!approvedVendor.acc.Phone}" />
+                    <apex:outputText value="{!vendor.acc.Phone}" />
                 </apex:column>
                 <apex:column>
                     <apex:facet name="header">Vendor Website</apex:facet>
-                    <apex:outputText value="{!approvedVendor.acc.Website}" />
+                    <apex:outputText value="{!vendor.acc.Website}" />
                 </apex:column>
             </apex:pageBlockTable>
             <apex:pageBlockSection columns="1" title="Enter Purchase Details" collapsible="false">

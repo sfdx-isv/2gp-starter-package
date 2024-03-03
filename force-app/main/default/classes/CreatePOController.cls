@@ -3,58 +3,72 @@
  */
 public class CreatePOController {
     /**
-     * Properties
+     * Properties.
      */
-    public String   searchString        {get; set;}
-    public String   description         {get; set;}
-    public Decimal  totalCost           {get; set;}
-    public String   selectedVendorId    {get; set;}
-    public List<ApprovedVendor> approvedVendors {get; set;}
+    public String       searchString        {get; set;}
+    public String       description         {get; set;}
+    public Decimal      totalCost           {get; set;}
+    public String       selectedVendorId    {get; set;}
+    public List<Vendor> vendors             {get; set;}
     /**
-     * Wrapper class for approved vendors
+     * Wrapper class for Accounts as Vendors.
      */
-    public class ApprovedVendor {
+    public class Vendor {
         public Account  acc         {get; set;}
         public Boolean  isSelected  {get; set;}
-        public ApprovedVendor(Account a) {
+        public Vendor(Account a) {
             acc = a;
             isSelected = false;
         }
     }
     /**
-     * Constructor
+     * Constructor.
      */
     public CreatePOController() {
-        approvedVendors = new List<ApprovedVendor>();
+        vendors = new List<Vendor>();
     }
     /**
-     * Search for approved vendors
+     * Search for Vendors.
      */
     public void search() {
-        // Clear any `approvedVendors` that were not selected, and save the IDs of the selected vendors.
+        // Save the IDs of any Vendors that user selected.
         Set<Id> selectedVendorIds = new Set<Id>();
-        for(Integer i = 0; i < approvedVendors.size(); i++) {
-            if(approvedVendors[i].isSelected == false) {
-                approvedVendors.remove(i);
-            } else {
-                selectedVendorIds.add(approvedVendors[i].acc.Id);
+        for(Vendor vendor : this.vendors) {
+            if(vendor.isSelected == true) {
+                selectedVendorIds.add(vendor.acc.Id);
             }
         }
-        // Create the appropriate search string based on the user's input.
-        String searchStr = 'SELECT  Id, Name, Phone, Website FROM Account ';
-        if(String.isBlank(searchString)) {
-            searchStr += 'WHERE Name LIKE \'%' + String.escapeSingleQuotes(searchString) + '%\' ';
+        // Clear the list of Vendors and create a variable to hold new Vendor Accounts.
+        this.vendors.clear();
+        List<Account> vendorAccounts;
+
+        // If the user provided a search string, use it to build a new list of Vendor Accounts.
+        if (String.isBlank(this.searchString) == false) {
+            // Escape the search string provided by the user.
+            String escapedSearchString = '%' + String.escapeSingleQuotes(this.searchString) + '%';
+            // Build a list of Vendor Accounts that match the search string or were already selected (up to a limit of 20).
+            vendorAccounts =   [SELECT      Id, Name, Phone, Website 
+                                FROM        Account 
+                                WHERE       Name LIKE :escapedSearchString 
+                                            OR 
+                                            Id IN :selectedVendorIds
+                                ORDER BY    Name ASC
+                                LIMIT       20];
+        } else {
+            // The user did not provide a search string. Return all Vendor Accounts (up to a limit of 20).
+            vendorAccounts =   [SELECT      Id, Name, Phone, Website 
+                                FROM        Account 
+                                ORDER BY    Name ASC
+                                LIMIT       20];
         }
-        // Limit the search to 10 results.
-        searchStr += 'LIMIT 10';
-        
-        // Perform the search
-        for(Account a : Database.query(searchStr))
-        {
-            // If the account is not already in the list of approved vendors, add it.
-            if(selectedVendorIds.contains(a.Id) == false) {
-                approvedVendors.add(new ApprovedVendor(a));
+        // Populate the list of vendors with the Vendor Accounts found.
+        for(Account vendorAccount : vendorAccounts) {
+            Vendor vendor = new Vendor(vendorAccount);
+            // Carry forward the selected state of the Vendor if it was selected before.
+            if (selectedVendorIds.contains(vendorAccount.Id)) {
+                vendor.isSelected = true;
             }
+            this.vendors.add(vendor);
         }
     }
     /**
@@ -71,17 +85,17 @@ public class CreatePOController {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'You must enter a total cost greater than zero for the goods or services you are purchasing.'));
             return null;
         }
-        // Iterate through the approvedVendors list and create a purchase order for each selected vendor.
+        // Iterate through the vendors list and create a purchase order for each selected vendor.
         List<Purchase_Order__c> newPurchaseOrders   = new List<Purchase_Order__c>();
         List<String>            vendorNames         = new List<String>();
-        for(ApprovedVendor av : approvedVendors) {
-            if(av.isSelected == true) {
+        for(Vendor vendor : vendors) {
+            if(vendor.isSelected == true) {
                 Purchase_Order__c po = new Purchase_Order__c();
-                po.Description__c = description;
-                po.Total_Cost__c = totalCost;
-                po.Vendor__c = av.acc.Id;
+                po.Description__c    = description;
+                po.Total_Cost__c     = totalCost;
+                po.Vendor__c         = vendor.acc.Id;
                 newPurchaseOrders.add(po);
-                vendorNames.add(av.acc.Name);
+                vendorNames.add(vendor.acc.Name);
             }
         }
         // Ensure at least one purchase order was created. If not, it means the user didn't select any vendors.
@@ -95,11 +109,13 @@ public class CreatePOController {
         // Display a success message
         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, 'Successfully created purchase order(s) for the following vendor(s): ' + String.join(vendorNames, ', ')));
 
-        // Do not redirect to a new page, but clear the form and the list of approved vendors.
-        approvedVendors.clear();
-        description = null;
-        totalCost = null;
+        // Clear the form and the list of vendors.
+        description  = null;
+        totalCost    = null;
         searchString = null;        
+        vendors.clear();
+
+        // Do not navigate to a different page.
         return null;
     }
 }
