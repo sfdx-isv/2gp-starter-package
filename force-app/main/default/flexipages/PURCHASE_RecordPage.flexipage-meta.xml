@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Default record page for &quot;Purchase Order&quot; objects when viewed inside the PURCHASE! App.</description>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -40,7 +41,7 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Purchase Order Record Page</masterLabel>
+    <masterLabel>PURCHASE! Record Page</masterLabel>
     <sobjectType>Purchase_Order__c</sobjectType>
     <template>
         <name>flexipage:recordHomeSimpleViewTemplate</name>
