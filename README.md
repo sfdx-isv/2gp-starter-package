@@ -1,6 +1,6 @@
-# 2GP Starter Package
+# The *PURCHASE!* App
 
-A simple starter package used by the [2GP Handbook for ISVs](http://google.com).
+A starter package used by the [2GP Handbook](http://google.com) from **ISV Bedrock**.
 
 ## Step One: Clone This Repository
 
