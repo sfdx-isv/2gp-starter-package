@@ -1,34 +1,50 @@
 /**
- * CreatePOController
+ * @class       `CreatePOController`
+ * @description This class is the controller for the Create Purchase Order page.
  */
 public class CreatePOController {
-    /**
-     * Properties.
-     */
+    /** @description A user-provided search string to filter the list of Vendors. */
     public String       searchString        {get; set;}
+    /** @description The description of the goods or services being purchased. */
     public String       description         {get; set;}
+    /** @description The total cost of the goods or services being purchased. */
     public Decimal      totalCost           {get; set;}
-    public String       selectedVendorId    {get; set;}
+    /** @description The list of Vendors. */
     public List<Vendor> vendors             {get; set;}
     /**
-     * Wrapper class for Accounts as Vendors.
+     * @class       `Vendor`
+     * @description  Wrapper class for `Accounts` as `Vendors`.
      */
     public class Vendor {
+        /** @description The `Account` object wrapped by this Vendor. */
         public Account  acc         {get; set;}
+        /** @description A flag to indicate if the user has selected this Vendor. */
         public Boolean  isSelected  {get; set;}
+        /**
+         * @description Constructor.
+         * @param       a   The `Account` object to wrap as a `Vendor`.
+         */
         public Vendor(Account a) {
             acc = a;
             isSelected = false;
         }
     }
     /**
-     * Constructor.
+     * @description Constructor.
      */
     public CreatePOController() {
+        // Initialize the list of vendors.
         vendors = new List<Vendor>();
+        // Get a list of default Vendor Accounts.
+        List<Account> vendorAccounts = getDefaultVendorAccounts(10);
+        // Populate the list of vendors with the Vendor Accounts found.
+        for(Account vendorAccount : vendorAccounts) {
+            Vendor vendor = new Vendor(vendorAccount);
+            this.vendors.add(vendor);
+        }
     }
     /**
-     * Search for Vendors.
+     * @description Search for `Vendors`.
      */
     public void search() {
         // Save the IDs of any Vendors that user selected.
@@ -56,10 +72,7 @@ public class CreatePOController {
                                 LIMIT       20];
         } else {
             // The user did not provide a search string. Return all Vendor Accounts (up to a limit of 20).
-            vendorAccounts =   [SELECT      Id, Name, Phone, Website 
-                                FROM        Account 
-                                ORDER BY    Name ASC
-                                LIMIT       20];
+            vendorAccounts = getDefaultVendorAccounts(20);
         }
         // Populate the list of vendors with the Vendor Accounts found.
         for(Account vendorAccount : vendorAccounts) {
@@ -72,7 +85,8 @@ public class CreatePOController {
         }
     }
     /**
-     * Save the Purchase Order
+     * @description Save the Purchase Order
+     * @return      The page reference to navigate to after Purchase Orders are saved.
      */
     public PageReference save() {
         // Guard against the user not entering a description.
@@ -117,5 +131,16 @@ public class CreatePOController {
 
         // Do not navigate to a different page.
         return null;
+    }
+    /**
+     * @description Get a list of default Vendor Accounts.
+     * @param       maxRecords  The maximum number of records to return.
+     * @return      A list of `Account` objects.
+     */
+    private List<Account> getDefaultVendorAccounts(Integer maxRecords) {
+        return [SELECT      Id, Name, Phone, Website 
+                FROM        Account 
+                ORDER BY    Name ASC
+                LIMIT       :maxRecords];
     }
 }
