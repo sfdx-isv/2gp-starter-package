@@ -21,41 +21,83 @@ Once cloned, follow the exercises in the [2GP Handbook for ISVs](http://google.c
 - [Documentation for Second-Generation Packaging (2GP)](https://trailhead.salesforce.com/users/isv-platform-experts/trailmixes/documentation-for-2gp)
 
 
-## Placeholder for `sf` Commands
+## List of `sf` Commands Related to the Starter Package Project
+
+### Package Creation
 
 Create new managed package (must specify namespace in `sfdx-project.json` first)
 ```
 sf package create -n "PURCHASE! Starter Package" -r force-app -t Managed
 ```
 
+Create a package version
+```
+sf package version create  -c -x -w 10 -d config/scratch-def.json -p "PURCHASE! Starter Package"
+```
+
+
+
+### Subscriber Testing
+
+Create a Subscriber Test scratch org
+```
+sf org create scratch -d -a SubscriberTestOrg -f config/subscriber-scratch-def.json
+```
+
+Install a package version
+```
+sf package install -p "PURCHASE! Starter Package@0.1.0-1" -w 10 -s AllUsers -o "SubscriberTestOrg"
+```
+
+Assign the `PURCHASE_User` permission set to the default user in the Subscriber Test org.
+```
+sf org assign permset -n PURCHASE_User -o "SubscriberTestOrg"
+```
+
+Open the Subscriber Test Org directly into Setup.
+```
+sf org open -o "SubscriberTestOrg" -p "/lightning/setup/SetupOneHome/home" -b firefox
+```
+
+
+
+### Package Development
+
 Create package development scratch org
 ```
-sf org create scratch -d -a PKG-DEV:starter-package -f config/scratch-def.json
+sf org create scratch -d -a PackageDevOrg -f config/package-scratch-def.json
 ```
 
 Deploy package source to default scratch org
 ```
-sf project deploy start
+sf project deploy start -o "PackageDevOrg"
 ```
 
-Assign permission set to the default user
+Assign the `PURCHASE_User` permission set to the default user (Optional - Not needed if you're only making declarative changes).
 ```
-sf org assign permset -n PURCHASE_User
+sf org assign permset -n PURCHASE_User -o "PackageDevOrg"
 ```
 
-Open the default scratch org in Firefox
+Open the Package Development scratch org in Firefox
 ```
-sf org open -b firefox
+sf org open -o "PackageDevOrg" -b firefox
 ```
 
 Retrieve changes from the package development scratch org
 ```
-sf project retrieve start
+sf project retrieve start -o "PackageDevOrg"
 ```
 
 
-Delete package development scratch org
+
+### Delete Scratch Orgs
+
+Delete Subscriber Test scratch org
 ```
-sf org delete scratch -p -o PKG-DEV:starter-package
+sf org delete scratch -p -o SubscriberTestOrg
 ```
 
+Delete Package Development scratch org
+```
+sf org delete scratch -p -o PackageDevOrg
+```
