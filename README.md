@@ -26,13 +26,13 @@ Once cloned, follow the exercises in the [2GP Handbook for ISVs](http://google.c
 ### Package Creation
 
 Create new managed package (must specify namespace in `sfdx-project.json` first)
-```
-sf package create -n "PURCHASE! Starter Package" -r force-app -t Managed
+```bash
+sf package create -n "PURCHASE! Starter Package" -r "force-app" -t "Managed"
 ```
 
 Create a package version
-```
-sf package version create  -c -x -w 10 -d config/scratch-def.json -p "PURCHASE! Starter Package"
+```bash
+sf package version create  -c -x -w 10 -d "config/scratch-def.json" -p "PURCHASE! Starter Package"
 ```
 
 
@@ -40,23 +40,23 @@ sf package version create  -c -x -w 10 -d config/scratch-def.json -p "PURCHASE! 
 ### Subscriber Testing
 
 Create a Subscriber Test scratch org
-```
-sf org create scratch -d -a SubscriberTestOrg -f config/subscriber-scratch-def.json
+```bash
+sf org create scratch -d -a "SubscriberTestOrg" -f "config/subscriber-scratch-def.json"
 ```
 
 Install a package version
-```
-sf package install -p "PURCHASE! Starter Package@0.1.0-1" -w 10 -s AllUsers -o "SubscriberTestOrg"
+```bash
+sf package install -p "PURCHASE! Starter Package@0.1.0-1" -w 10 -s "AllUsers" -o "SubscriberTestOrg"
 ```
 
 Assign the `PURCHASE_User` permission set to the default user in the Subscriber Test org.
-```
-sf org assign permset -n PURCHASE_User -o "SubscriberTestOrg"
+```bash
+sf org assign permset -n "PURCHASE_User" -o "SubscriberTestOrg"
 ```
 
 Open the Subscriber Test Org directly into Setup.
-```
-sf org open -o "SubscriberTestOrg" -p "/lightning/setup/SetupOneHome/home" -b firefox
+```bash
+sf org open -o "SubscriberTestOrg" -p "/lightning/setup/SetupOneHome/home" -b "firefox"
 ```
 
 
@@ -64,27 +64,27 @@ sf org open -o "SubscriberTestOrg" -p "/lightning/setup/SetupOneHome/home" -b fi
 ### Package Development
 
 Create package development scratch org
-```
-sf org create scratch -d -a PackageDevOrg -f config/package-scratch-def.json
+```bash
+sf org create scratch -d -a "PackageDevOrg" -f "config/package-scratch-def.json"
 ```
 
 Deploy package source to default scratch org
-```
+```bash
 sf project deploy start -o "PackageDevOrg"
 ```
 
 Assign the `PURCHASE_User` permission set to the default user (Optional - Not needed if you're only making declarative changes).
-```
-sf org assign permset -n PURCHASE_User -o "PackageDevOrg"
+```bash
+sf org assign permset -n "PURCHASE_User" -o "PackageDevOrg"
 ```
 
 Open the Package Development scratch org in Firefox
-```
-sf org open -o "PackageDevOrg" -b firefox
+```bash
+sf org open -o "PackageDevOrg" -b "firefox"
 ```
 
 Retrieve changes from the package development scratch org
-```
+```bash
 sf project retrieve start -o "PackageDevOrg"
 ```
 
@@ -93,11 +93,11 @@ sf project retrieve start -o "PackageDevOrg"
 ### Delete Scratch Orgs
 
 Delete Subscriber Test scratch org
-```
-sf org delete scratch -p -o SubscriberTestOrg
+```bash
+sf org delete scratch -p -o "SubscriberTestOrg"
 ```
 
 Delete Package Development scratch org
-```
-sf org delete scratch -p -o PackageDevOrg
+```bash
+sf org delete scratch -p -o "PackageDevOrg"
 ```
