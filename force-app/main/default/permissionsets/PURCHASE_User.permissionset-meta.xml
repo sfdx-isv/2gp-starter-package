@@ -55,15 +55,27 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
-        <apexPage>CreatePO</apexPage>
+        <apexPage>Create_Purchase_Orders</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <tabSettings>
+        <tab>Approve_Purchase_Orders</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <tabSettings>
         <tab>Create_Purchase_Orders</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Create_Purchase_Orders_VF</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Purchase_Order__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>View_Purchase_Orders</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>
