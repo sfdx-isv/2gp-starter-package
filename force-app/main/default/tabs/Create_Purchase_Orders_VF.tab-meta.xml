@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Lightning Tab providing a specialized entry screen with a Vendor search tool to aid in creating new Purchase Orders.</description>
-    <flexiPage>PURCHASE_Create</flexiPage>
+    <description>Visualforce Tab providing a specialized entry screen with a Vendor search tool to aid in creating new Purchase Orders.</description>
     <label>Create Purchase Orders</label>
     <motif>Custom40: Credit card</motif>
+    <page>Create_Purchase_Orders</page>
 </CustomTab>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Created by Lightning App Builder</description>
-    <flexiPage>Approve_Purchase_Orders</flexiPage>
+    <description>Lightning Tab that wraps a screen flow used to approve Purchase Orders.</description>
+    <flexiPage>PURCHASE_Approve</flexiPage>
     <label>Approve Purchase Orders</label>
-    <motif>Custom87: Safe</motif>
+    <motif>Custom11: Star</motif>
 </CustomTab>

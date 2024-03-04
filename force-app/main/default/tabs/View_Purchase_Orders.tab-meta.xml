@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Created by Lightning App Builder</description>
-    <flexiPage>View_Purchase_Orders</flexiPage>
+    <description>Lightning Tab for viewing Purchase Orders alongside contextual instructions as part of the sample app.</description>
+    <flexiPage>PURCHASE_View</flexiPage>
     <label>View Purchase Orders</label>
-    <motif>Custom39: Telescope</motif>
+    <motif>Custom62: Chalkboard</motif>
 </CustomTab>
