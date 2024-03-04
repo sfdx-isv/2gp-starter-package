@@ -87,7 +87,7 @@
         <name>right</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>PURCHASE! App Home Page</masterLabel>
+    <masterLabel>PURCHASE! Home Page</masterLabel>
     <template>
         <name>home:desktopTemplateHeaderThreeColumns</name>
     </template>
