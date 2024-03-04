@@ -161,7 +161,13 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Purchase Orders</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Vendor__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Total_Cost__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approved__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approved_By__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
