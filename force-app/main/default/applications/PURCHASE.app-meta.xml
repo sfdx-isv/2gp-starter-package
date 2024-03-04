@@ -40,7 +40,7 @@
     <navType>Standard</navType>
     <setupExperience>all</setupExperience>
     <tabs>standard-home</tabs>
-    <tabs>Create_Purchase_Orders1</tabs>
+    <tabs>Create_Purchase_Orders</tabs>
     <tabs>Approve_Purchase_Orders</tabs>
     <tabs>View_Purchase_Orders</tabs>
     <uiType>Lightning</uiType>
