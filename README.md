@@ -40,6 +40,18 @@ Once you've cloned this project to your dev environment, follow the exercises in
 
 # List of `sf` Commands Related to the Starter Package Project
 
+## Project Configuration
+
+Set a default Developer Hub for your project.
+```bash
+sf config set target-dev-hub="DevHubOrg"
+```
+
+View the current local and global config values.
+```bash
+sf config list
+```
+
 ## Package Creation
 
 Create new managed package (must update namespace in `sfdx-project.json` and `force-app/main/default/flows/Approve_Purchase_Orders.flow-meta.xml` first).
@@ -50,6 +62,16 @@ sf package create -n "PURCHASE! Starter Package" -r "force-app" -t "Managed"
 Create a package version.
 ```bash
 sf package version create  -c -x -w 10 -d "config/package-scratch-def.json" -p "PURCHASE! Starter Package"
+```
+
+View package version details.
+```bash
+sf package version report -p "PURCHASE! Starter Package@0.1.0-1" --verbose
+```
+
+Promote the package version you just created.
+```bash
+sf package version promote -p "PURCHASE! Starter Package@0.1.0-1"
 ```
 
 
