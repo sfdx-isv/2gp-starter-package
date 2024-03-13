@@ -1,10 +1,10 @@
-# The *PURCHASE!* App
+# The *PURCHASE!* App (Starter Version)
 
-A starter package used by the [2GP Handbook](http://google.com) from **ISV Bedrock**.
+A simplified version of the **PURCHASE!** sample app. Used as a starter package by the introductory-level "Build" module in the [2GP Handbook](http://google.com) from **ISV Bedrock**.
 
 ## Step One (Recommended): Create a New Repository from this Template Repository
 
-This project is published as a GitHub template repository. Any GitHub user can be quickly create their own copy using this template repo.
+**This project is published as a GitHub template repository.** Any GitHub user can quickly create their own copy by following these steps.
 
 1. Open the [2GP Starter Package](https://github.com/sfdx-isv/2gp-starter-package) repo on GitHub.
 2. Click the **Use this template** button at the top-right of the page.
